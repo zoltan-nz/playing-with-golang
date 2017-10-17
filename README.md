@@ -11,3 +11,15 @@ Run without compilation:
 ```
 $ go run main.go
 ```
+
+Format:
+
+```
+$ gofmt -w main.go
+```
+
+Import:
+
+```
+$ goimport -w main.go
+```
