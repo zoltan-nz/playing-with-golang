@@ -23,3 +23,9 @@ Import:
 ```
 $ goimport -w main.go
 ```
+
+## Dependency management
+
+```
+$ brew install dep
+```
