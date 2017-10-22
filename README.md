@@ -29,3 +29,7 @@ $ goimport -w main.go
 ```
 $ brew install dep
 ```
+
+* `$GOPATH` can point to `~/projects/go`
+* Add `$GOPATH/bin` to `$PATH`
+* All your go project should be in `~/projects/go/src`
