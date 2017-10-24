@@ -3,12 +3,30 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 )
 
 func main() {
-	if len(os.Args) > 1 {
-		fmt.Println(os.Args[1])
+	args := os.Args;
+
+	hourOfDay := time.Now().Hour()
+	greeting:= getGreeting(hourOfDay)
+
+	if len(args) > 1 {
+		fmt.Println(args[1])
 	} else {
-		fmt.Println("Hello, I'm Gopher")
+		fmt.Println(greeting)
 	}
 }
+
+func getGreeting(hour int) string {
+	if hour < 12 {
+		return "Good Morning"
+	} else if hour < 18 {
+		return "Good Afternoon"
+	} else {
+		return "Good Evening"
+	}
+}
+
+
