@@ -4,13 +4,20 @@ import (
 	"fmt"
 	"os"
 	"time"
+	"errors"
 )
 
 func main() {
 	args := os.Args;
 
 	hourOfDay := time.Now().Hour()
-	greeting:= getGreeting(hourOfDay)
+	greeting, err := getGreeting(hourOfDay)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 
 	if len(args) > 1 {
 		fmt.Println(args[1])
@@ -19,14 +26,22 @@ func main() {
 	}
 }
 
-func getGreeting(hour int) string {
-	if hour < 12 {
-		return "Good Morning"
-	} else if hour < 18 {
-		return "Good Afternoon"
-	} else {
-		return "Good Evening"
+func getGreeting(hour int) (string, error) {
+	var message string
+
+	if hour < 7 {
+		err := errors.New("Too early...")
+		return message, err
 	}
+
+	if hour < 12 {
+		message = "Good Morning"
+	} else if hour < 18 {
+		message = "Good Afternoon"
+	} else {
+		message = "Good Evening"
+	}
+	return message, nil
 }
 
 
