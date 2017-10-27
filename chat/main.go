@@ -17,4 +17,16 @@ func main() {
 		fmt.Println(i)
 		i++
 	}
+
+	var langs [3]string
+
+	langs[0] = "Go"
+	langs[1] = "Ruby"
+
+	var langs2 []string
+
+	langs2 = append(langs2, "Go")
+	langs2 = append(langs2, "Ruby")
+
+	fmt.Println(langs2)
 }
