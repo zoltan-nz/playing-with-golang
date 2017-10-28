@@ -10,7 +10,7 @@ func main() {
 	i := 0
 
 	for {
-		if i>= 5 {
+		if i >= 5 {
 			break
 		}
 
@@ -29,4 +29,10 @@ func main() {
 	langs2 = append(langs2, "Ruby")
 
 	fmt.Println(langs2)
+
+	langs3 := []string{"Go", "Ruby", "JavaScript"}
+	for _, element := range langs3 {
+		fmt.Println(element)
+	}
+
 }
