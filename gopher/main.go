@@ -10,6 +10,15 @@ type gopher struct {
 	isAdult bool
 }
 
+type horse struct {
+	name   string
+	weight int
+}
+
+type jumper interface {
+	jump() string
+}
+
 func (g gopher) jump() string {
 	if g.age < 65 {
 		return g.name + " can jump high"
@@ -17,12 +26,18 @@ func (g gopher) jump() string {
 	return g.name + " can still jump"
 }
 
-func main() {
-	gopherList := getList()
+func (h horse) jump() string {
+	if h.weight > 2500 {
+		return "I'm too heavy..."
+	}
+	return "I will jump..."
+}
 
-	for _, gopher := range gopherList {
-		validateAge(gopher)
-		fmt.Println(gopher.jump())
+func main() {
+	jumperList := getList()
+
+	for _, jumper := range jumperList {
+		fmt.Println(jumper.jump())
 	}
 }
 
@@ -30,10 +45,11 @@ func validateAge(g *gopher) {
 	g.isAdult = g.age >= 21
 }
 
-func getList() []*gopher {
+func getList() []jumper {
 	gopher1 := &gopher{name: "Joe", age: 37}
 	gopher2 := &gopher{name: "Bill", age: 70}
+	horse1 := &horse{name: "Kincsem", weight: 2000}
 
-	list := []*gopher{gopher1, gopher2}
+	list := []jumper{gopher1, gopher2, horse1}
 	return list
 }
