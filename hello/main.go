@@ -1,14 +1,14 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"time"
-	"errors"
 )
 
 func main() {
-	args := os.Args;
+	args := os.Args
 
 	hourOfDay := time.Now().Hour()
 	greeting, err := getGreeting(hourOfDay)
@@ -17,7 +17,6 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 
 	if len(args) > 1 {
 		fmt.Println(args[1])
@@ -30,7 +29,7 @@ func getGreeting(hour int) (string, error) {
 	var message string
 
 	if hour < 7 {
-		err := errors.New("Too early...")
+		err := errors.New("too early")
 		return message, err
 	}
 
@@ -43,5 +42,3 @@ func getGreeting(hour int) (string, error) {
 	}
 	return message, nil
 }
-
-

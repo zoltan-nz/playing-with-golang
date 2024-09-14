@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"playing-with-golang/gopher/model"
+	"gopher/model"
 )
 
 func main() {
