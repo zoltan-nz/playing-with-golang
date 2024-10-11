@@ -10,6 +10,11 @@ import (
 	"net/url"
 )
 
+const (
+	GEO_API_URL      = "https://geocoding-api.open-meteo.com/v1/search?name=%s&count=1&language=en&format=json"
+	FORECAST_API_URL = "https://api.open-meteo.com/v1/forecast?latitude=%.6f&longitude=%.6f&hourly=temperature_2m"
+)
+
 type LatLong struct {
 	Latitude  float64 `json:"latitude"`
 	Longitude float64 `json:"longitude"`
@@ -20,9 +25,9 @@ type GeoResponse struct {
 }
 
 func getLatLong(city string) (*LatLong, error) {
-	endpoint := fmt.Sprintf("https://geocoding-api.open-meteo.com/v1/search?name=%s&count=1&language=en&format=json", url.QueryEscape(city))
-
+	endpoint := fmt.Sprintf(GEO_API_URL, url.QueryEscape(city))
 	resp, err := http.Get(endpoint)
+
 	if err != nil {
 		return nil, fmt.Errorf("error making request to Geo API: %w", err)
 	}
@@ -46,7 +51,7 @@ func getLatLong(city string) (*LatLong, error) {
 }
 
 func getWeather(latLong LatLong) (string, error) {
-	endpoint := fmt.Sprintf("https://api.open-meteo.com/v1/forecast?latitude=%.6f&longitude=%.6f&hourly=temperature_2m", latLong.Latitude, latLong.Longitude)
+	endpoint := fmt.Sprintf(FORECAST_API_URL, latLong.Latitude, latLong.Longitude)
 	resp, err := http.Get(endpoint)
 
 	if err != nil {
